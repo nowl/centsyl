@@ -1,0 +1,49 @@
+[package]
+name = "centsyl"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+web = [
+    "wgpu/webgl",
+    "rodio/wasm-bindgen",
+    "getrandom/js",
+    "uuid/js",
+    "legion/wasm-bindgen",
+    "log/release_max_level_off",
+]
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+console_error_panic_hook = "0.1"
+console_log = "1.0"
+wasm-bindgen = "0.2"
+wasm-bindgen-futures = "0.4"
+web-sys = "0.3"
+wasm-timer = "0.2"
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+env_logger = "0.9"
+#pretty_env_logger = "0.4"
+pollster = "0.2"
+
+[dependencies]
+euclid = "0.22"
+pixels = "0.14"
+image = "0.25"
+winit = "0.28"
+wgpu = "22.1"
+winit_input_helper = "0.14"
+num-traits = "0.2"
+log = "0.4"
+embedded-graphics = "0.8"
+pcg-mwc = { version = "0.2.1", features = ["serde1"] }
+rand = "0.8.4"
+bracket-pathfinding = "0.8"
+legion = "0.4.0"
+legion_codegen = "0.4.0"
+rodio = { version = "0.19", features = ["wav"], default-features = false }
+getrandom = "0.2"
+uuid = "1.10"
+ibm437 = "0.3"
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }

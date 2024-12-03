@@ -1,0 +1,37 @@
+* Centsyl
+Example retro isometric shooter game using Pixels and Legion ECS
+** Description
+#+CAPTION: Screenshot
+[[https://i.imgur.com/gdgubh3.png]]
+
+This project was primarily an experiment to create a simple retro isometric shooter.
+I had the classic Atari ST game [[https://en.wikipedia.org/wiki/Time_Bandit][Time Bandit]] on my mind when I was working on this. It is
+written in Rust and uses the following great libraries:
+- Pixel (framebuffer on top of WGPU)
+- Legion (entity component system)
+- Rodio for audio
+- bracket for pathfinding
+- embedded-graphics for fonts
+  
+** Building
+#+BEGIN_SRC bash
+cargo run --release
+#+END_SRC
+If on wayland and getting scaling issues you can instead run:
+#+BEGIN_SRC bash
+WINIT_UNIX_BACKEND=x11 cargo run --release
+#+END_SRC
+
+** Webassembly Build
+#+BEGIN_SRC bash
+RUSTFLAGS=--cfg=web_sys_unstable_apis cargo build --target wasm32-unknown-unknown --release --features web
+cargo install wasm-bindgen-cli
+wasm-bindgen target/wasm32-unknown-unknown/release/centsyl.wasm --out-dir wasm --no-modules --no-typescript
+#+END_SRC
+
+#+BEGIN_SRC bash
+cargo install basic-http-server
+cd wasm
+basic-http-server
+#+END_SRC
+open browser to localhost:4000

@@ -1,0 +1,10 @@
+<html>
+    <body>
+        <script src="./centsyl.js"></script>
+        <script>
+         window.addEventListener("load", async () => {
+             await wasm_bindgen("./centsyl_bg.wasm");
+         });
+        </script>
+  </body>
+</html>
